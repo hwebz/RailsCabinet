@@ -1,4 +1,7 @@
-= @docs.each do |doc|
-	%h2= link_to doc.title, doc
-	%p= time_ago_in_words(doc.created_at)
-	%p= truncate(doc.content, length:50)
+%div{:class => "list-group"}
+	- @docs.each do |doc|
+		= link_to doc, :class => "list-group-item list-group-item-action flex-column align-items-start" do
+			%div{:class => "d-flex w-100 justify-content-between"}
+				%h5{:class => "mb-1"}= doc.title
+				%small= time_ago_in_words(doc.created_at)
+			%p{:class => "mb-1"}= truncate(doc.content, length:50)
